@@ -1,0 +1,8 @@
+[build]
+  command = "Python manage.py runserver"
+  base = "/"
+
+[[redirects]]
+  from = "*"
+  to = "/home.html"
+  status = 200
