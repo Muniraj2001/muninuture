@@ -36,7 +36,7 @@ from random import sample
 from django.db.models import F, FloatField, ExpressionWrapper
 
 # @login_required
-def home(request):
+def index(request):
     totalitem = 0
     wishitem = 0
 
@@ -78,7 +78,7 @@ def home(request):
 
 
 
-    return render(request, "app/home.html", {
+    return render(request, "app/index.html", {
         'products': products,
         'special_offers': special_offers,
         'posts': posts,
@@ -186,7 +186,7 @@ def contact(request):
                 fail_silently=False,
             )
 
-            return render(request, "app/home.html",locals())
+            return render(request, "app/index.html",locals())
         else:
             return JsonResponse({'success': False, 'errors': form.errors})
     else:
