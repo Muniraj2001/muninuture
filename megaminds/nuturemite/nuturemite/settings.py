@@ -15,6 +15,7 @@ from pathlib import Path
 from .juzmin import JAZZMIN_SETTINGS
 
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,7 +29,7 @@ SECRET_KEY = 'django-insecure-!xqk1&%5vi!f=cduwp%$w4l&4e04mwv_b8&@=c3jfip$+tgfmn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['nuturemite.com', 'localhost']
 
 
 # Application definition
@@ -126,10 +127,13 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'
 LOGIN_REDIRECT_URL = '/profile/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'staticfiles'),
+]
 
-
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 
 # Default primary key field type
@@ -155,3 +159,9 @@ JAZZMIN_UI_TWEAKS = {
     "theme": "flatly",
     "dark_mode_theme": "darkly",
 }
+
+TWILIO_ACCOUNT_SID = 'AC85e6f40cd406160a00298683f9939492'
+TWILIO_AUTH_TOKEN = '[AuthToken]'
+TWILIO_PHONE_NUMBER = 'whatsapp:+14155238886'
+account_sid = 'AC85e6f40cd406160a00298683f9939492'
+auth_token = '[AuthToken]'

@@ -138,9 +138,62 @@
                     </div>
                     {% endif %}
                 </div>
+
+
+
             </div>
             {% endfor %}
         </div>
     </div>
 </div>
+<style>
+    /* Your existing styles here */
+
+    /* Media Query for Mobile Devices */
+    @media screen and (max-width: 576px) {
+        body {
+            font-size: 14px;  /* Adjust the font size for smaller screens */
+        }
+
+        /* Add more styles as needed for mobile devices */
+        .container {
+            padding: 10px;
+        }
+
+        .col-sm-2, .col-sm-9 {
+            width: 100%;
+            margin-right: 0;
+            margin-left: 0;
+        }
+    }
+
+    /* Media Query for Tablet Devices */
+    @media screen and (min-width: 577px) and (max-width: 991px) {
+        body {
+            /* Adjust styles for tablets */
+        }
+
+        /* Add more styles as needed for tablets */
+        .container {
+            padding: 20px;
+        }
+
+        .col-sm-2 {
+            width: 20%;
+        }
+
+        .col-sm-9 {
+            width: 80%;
+        }
+    }
+
+    /* Media Query for Laptop Devices */
+    @media screen and (min-width: 992px) {
+        body {
+            /* Adjust styles for laptops and larger screens */
+        }
+
+        /* Add more styles as needed for laptops and larger screens */
+    }
+</style>
 {% endblock main-content %}

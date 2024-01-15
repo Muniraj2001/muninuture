@@ -7,6 +7,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views
 from django.contrib.auth import views as auth_view
+from .views import add_comment
+from .views import view_comments
+from .views import client_slider
+from .views import toggle_wishlist
+from .views import AddReview
 
 # from .views import contact, chatbot
 
@@ -25,7 +30,12 @@ urlpatterns = [
     path('profile/',views.ProfileView.as_view(), name='profile'),
     path('address', views.address, name='address'),
     path('updateAddress/<int:pk>', views.UpdateAddress.as_view(), name='updateAddress'),
-    
+    path('add_comment/<int:post_id>/', add_comment, name='add_comment'),
+    path('view_comments/<int:post_id>/', view_comments, name='view_comments'),
+    path('client-slider/', client_slider, name='client_slider'),
+    path('togglewishlist/', toggle_wishlist, name='toggle-wishlist'),
+    path('add-review/<int:pk>/', AddReview.as_view(), name='add-review'),
+
     #cart
     path('add-to-cart/', views.add_to_cart, name='add-to-cart'),
     path('cart/', views.cart_view, name='cart'),

@@ -11,10 +11,60 @@
     <link rel="stylesheet" href="{% static 'app.css/all.min.css' %}">
     <link rel="stylesheet" href="{% static 'app.css/style.css' %}">
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <title>nuturemite | {%block title %}{% endblock title %}</title>
+    <title>nuturemite | {% block title %}{% endblock title %}</title>
 </head>
 <body>
-  <script>
+    <style>
+        /* Your existing styles here */
+    
+        /* Media Query for Mobile Devices */
+        @media screen and (max-width: 576px) {
+            body {
+                font-size: 14px;  /* Adjust the font size for smaller screens */
+            }
+    
+            /* Add more styles as needed for mobile devices */
+            .container {
+                padding: 10px;
+            }
+    
+            .col-sm-2, .col-sm-9 {
+                width: 100%;
+                margin-right: 0;
+                margin-left: 0;
+            }
+        }
+    
+        /* Media Query for Tablet Devices */
+        @media screen and (min-width: 577px) and (max-width: 991px) {
+            body {
+                /* Adjust styles for tablets */
+            }
+    
+            /* Add more styles as needed for tablets */
+            .container {
+                padding: 20px;
+            }
+    
+            .col-sm-2 {
+                width: 20%;
+            }
+    
+            .col-sm-9 {
+                width: 80%;
+            }
+        }
+    
+        /* Media Query for Laptop Devices */
+        @media screen and (min-width: 992px) {
+            body {
+                /* Adjust styles for laptops and larger screens */
+            }
+    
+            /* Add more styles as needed for laptops and larger screens */
+        }
+    </style>
+  <!-- <script>
     window.onscroll = function () {
         scrollFunction();
     };
@@ -27,69 +77,32 @@
         }
     }
     
-</script>
+</script> -->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-custom fixed-top">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-custom fixed-top" style="height: 150px;">
   <div class="container-fluid">
         <a class="navbar-brand" href="/">
-          <!-- <img src="{% static 'app/images/nutri.png' %}" width="100" height="50" alt=""/> -->
           <img class="img-responsive" src="//nuturemite.info/wp-content/uploads/2022/10/nuturmite_logo_tranparent.png" alt="" style="max-width:150px;">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                {% if request.user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        products
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'category' 'AN' %}">Antioxidants</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'AV' %}">Ayurvedic</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'DH' %}">Digestive Health</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'GH' %}">General Health</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'HS' %}">Herbal, Specialty Supplements</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'IH' %}">Immune Health</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'MH' %}">Men Health</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'OG' %}">Organic</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'PC' %}">Personal Care</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'SH' %}">Sexual health</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'VM' %}">Vitamins&Minerals</a></li>
-                        <li><a class="dropdown-item" href="{% url 'category' 'WH' %}">Women Health</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'about' %}">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'contact' %}">Contact Us</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" href="{% url 'shop' %}">Shop</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" href="{% url 'post_list' %}">Blog</a>
-                </li>
-                </ul>
-                <form class="d-flex" role="search" action="/search">
-                    <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-
-                </form>
+        
+        <div class="mx-auto" style="width: 700px;">
+            <form class="d-flex text-center" role="search" action="/search">
+                <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
                 </div>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown mx-2">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Muniraj
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user-circle"></i>
+                         </a>
+                        <ul class="submenu" aria-labelledby="profileDropdown">
                             <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
                             <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
                             <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
@@ -110,20 +123,624 @@
                             <i class="fas fa-heart"></i>
                         </a>
                     </li>
-                    {% else %}
-                    <li class="nav-item mx-2">
-                        <a href="{% url 'login' %}" class="nav-link text-white">Login</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a href="{% url 'customerregistration' %}" class="nav-link text-white">Registration</a>
-                    </li>
-                    {% endif %}
+                    
                 </ul>
             </div>
         </div>
-    </nav>
-    <br><br><br><br><br>
+    </nav> -->
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-white fixed-top">
+        <div class="container-fluid">
+              <a class="navbar-brand" href="/">
+                <!-- <img src="{% static 'app/images/nutri.png' %}" width="100" height="50" alt=""/> -->
+                <img class="img-responsive" src="//nuturemite.info/wp-content/uploads/2022/10/nuturmite_logo_tranparent.png" alt="" style="max-width:133px;">
+              </a>
+              <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      {% if request.user.is_authenticated %}
+                      <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="/">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link text-white" href="{% url 'about' %}">About Us</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link text-white" href="{% url 'contact' %}">Contact Us</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'shop' %}">Shop</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'post_list' %}">Blog</a>
+                      </li>
+                      </ul>
+                      <div class="mx-auto" style="width: 600px;">
+                        <form class="d-flex text-center" role="search" action="/search">
+                            <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                      </div>
+                      </div>
+                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                          <li class="nav-item dropdown mx-2">
+                              <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user" style="font-size: 20px;"></i>
+                              </a>
+                              <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                                  <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                                  <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
+                                  <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
+                                  <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                              </ul>
+                          </li>
+                          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofGJopfMzkL5C5iRYZ/Sx6ZR5R2N5tN" crossorigin="anonymous">
+      
+                          <li class="nav-item mx-2">
+                              <a href="{% url 'cart' %}" class="nav-link text-white"><span
+                                      class="badge bg-danger">{% if totalitem > 0 %}{{totalitem}}{% endif %}</span><i class="fas fa-shopping-cart"></i></a>
+                          </li>
+                          <li class="nav-item mx-2">
+                              <a href="{% url 'showwishlist' %}" class="nav-link text-white">
+                                  {% if wishitem > 0 %}
+                                  <span class="badge bg-danger">{{ wishitem }}</span>
+                                  {% endif %}
+                                  <i class="fas fa-heart"></i>
+                              </a>
+                          </li>
+                          {% else %}
+                          
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'about' %}">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'contact' %}">Contact Us</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link text-white" href="{% url 'shop' %}">Shop</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link text-white" href="{% url 'post_list' %}">Blog</a>
+                            </li>
+                            </ul>
+                            <div class="mx-auto" style="width: 600px;">
+                              <form class="d-flex text-center" role="search" action="/search">
+                                  <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
+                                  <button class="btn btn-outline-success" type="submit">Search</button>
+                              </form>
+                            </div>
+                            </div>
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item dropdown mx-2">
+                                    <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user" style="font-size: 20px;"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                                        <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                                    </ul>
+                                </li>
+                                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofGJopfMzkL5C5iRYZ/Sx6ZR5R2N5tN" crossorigin="anonymous">
+                        
+                          <li class="nav-item mx-2">
+                              <a href="{% url 'login' %}" class="nav-link text-white">Login</a>
+                          </li>
+                          <li class="nav-item mx-2">
+                              <a href="{% url 'customerregistration' %}" class="nav-link text-white">Registration</a>
+                          </li>
+                          {% endif %}
+                      </ul>
+                  </div>
+              </div>
+          </nav>
+    
+          <script type="text/javascript">
+            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            (function(){
+                var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                s1.async=true;
+                s1.src='YOUR_CHAT_WIDGET_SCRIPT_URL';
+                s1.charset='UTF-8';
+                s1.setAttribute('crossorigin','*');
+                s0.parentNode.insertBefore(s1,s0);
+            })();
+        </script>
+
+    <br><br><br><br><br><br>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #f8f9fa;
+            color: #151414;
+            font-weight: bold;
+            padding: 10px;
+            justify-content: space-between;
+            /* Adjusted alignment and added space */
+        }
+
+        .menu-item {
+            position: relative;
+            padding-right: 140px;
+            cursor: pointer;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            padding: 10px;
+            z-index: 1;
+            /* display: flex; Updated to flex to allow side-by-side display */
+        }
+
+        .submenu-list {
+            /* Added styling for the two lists */
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .menu-item:hover .submenu {
+            display: flex;
+        }
+
+        .submenu-item {
+            padding: 8px;
+            padding-right: 8px;
+            cursor: pointer;
+        }
+
+        .submenu {
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            border: none;
+            border-radius: 0;
+            padding: 0.7em;
+        }
+
+        @media only screen and (min-width: 992px) {
+            .menu {
+                justify-content: space-between;
+            }
+
+            .dropdown:hover .submenu {
+                display: flex;
+            }
+
+            .submenu.show {
+                display: flex;
+            }
+        }
+
+        .submenu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .submenu li .dropdown-item {
+            color: gray;
+            font-size: 1em;
+            padding: 0.5em 1em;
+        }
+
+        .submenu li .dropdown-item:hover {
+            background-color: #f1f1f1;
+        }
+
+        .submenu li:first-child a {
+            font-weight: bold;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            color: #516beb;
+        }
+
+        .submenu li:first-child a:hover {
+            background-color: #f1f1f1;
+        }
+
+        @media only screen and (max-width: 992px) {
+            .submenu.show {
+                flex-wrap: wrap;
+                max-height: 350px;
+                overflow-y: scroll;
+            }
+
+            .menu-item {
+                width: 100%;
+                padding-right: 0;
+            }
+
+            .submenu {
+                position: static;
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .submenu-list {
+                margin-right: 0;
+            }
+        }
+
+        /* Sidebar button styles */
+        #sidebar-toggle {
+            display: none;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            z-index: 2;
+
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+
+        @media only screen and (max-width: 992px) {
+            #sidebar-toggle {
+                display: block;
+            }
+
+            .menu {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu.show {
+                display: flex;
+            }
+        }
+    </style>
+    <title>Responsive Horizontal Dropdown Menu</title>
+</head>
+<body>
+
+<!-- Add sidebar toggle button -->
+<div class="pt-4 lg:pt-6 border-b-4 border-gray-thin">
+
+<div id="sidebar-toggle"><div style="display: inline-block; 
+    background-color: #f2f2f2; 
+    border: 1px solid #3498db; 
+    padding: 10px; 
+    border-radius: 8px; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);">
+<i class="fas fa-bars" style="color: #3498db; font-size: 24px;"></i>
+</div></div>
+    <div class="menu">
+        <div class="menu-item">
+            <div>Health & Wellness</div>
+            
+            <div class="submenu">
+                <ul>
+                    <li class="current">
+                        <a class="dropdown-item" href="{% url 'shop' %}" data-cat_id="" class="ml-0">View All</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'AN' %}" data-cat_id="antioxidants">Antioxidants</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'VM' %}" data-cat_id="vitamins-minerals">Vitamins & Minerals</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'AV' %}" data-cat_id="ayurvedic">Ayurvedic</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'OG' %}" data-cat_id="organic">Organic</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'PC' %}" data-cat_id="personal-care">Personal Care</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'HS' %}" data-cat_id="herbal-specialty-supplements">Herbal, Specialty Supplements</a>
+                    </li>
+                    
+                </ul>
+                <ul>
+                    <li>
+                        <a class="dropdown-item" href="#" data-cat_id="men-health">Health Concerns</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'MH' %}" data-cat_id="men-health">Men Health</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'DH' %}" data-cat_id="digestive-health">Digestive Health</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'GH' %}" data-cat_id="general-health">General Health</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'IH' %}" data-cat_id="immune-health">Immune Health</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'SH' %}" data-cat_id="sexual-health">Sexual Health</a>
+                    </li>
+                    
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'WH' %}" data-cat_id="women-health">Women Health</a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+        <div class="menu-item">
+            <div>Vitamins</div>
+            
+            <div class="submenu">
+                <ul>
+                    <li>
+                        <a class="dropdown-item" href="#" data-cat_id="men-health">vitamins-minerals</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'B12' %}" data-cat_id="men-health">Vitamin B12</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'C' %}" data-cat_id="digestive-health">Vitamin C</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'D3' %}" data-cat_id="general-health">Vitamin D3</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'E' %}" data-cat_id="immune-health">Vitamin E</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'A' %}" data-cat_id="sexual-health">Vitamin A</a>
+                    </li>
+                    
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'C' %}" data-cat_id="women-health">Vitamin C</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'K' %}" data-cat_id="women-health">Vitamin K</a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+        <div class="menu-item">
+            <div>Health Problems &amp;Concerns</div>
+            
+            <div class="submenu">
+                <ul>
+                    <li>
+                        <a class="dropdown-item" href="#" data-cat_id="men-health">Health Problems</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'AC' %}" data-cat_id="Acne">Acne</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'DS' %}" data-cat_id="digestive-health">Dry Skin</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'AD' %}" data-cat_id="general-health">Acidity</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'CP' %}" data-cat_id="immune-health">Constipation</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'PD' %}" data-cat_id="sexual-health">PCOD</a>
+                    </li>
+                    
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'DD' %}" data-cat_id="women-health">Dandruff</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'BS' %}" data-cat_id="women-health">Blood Sugar</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'PS' %}" data-cat_id="women-health">Poor sleep</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div>Health suppliments</div>
+            
+            <div class="submenu">
+                <ul>
+                    <li>
+                        <a class="dropdown-item" href="#" data-cat_id="men-health">vitamins-minerals</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'B12' %}" data-cat_id="men-health">vitamins-minerals</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'C' %}" data-cat_id="digestive-health">Herbal, Specialty Supplements</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'D3' %}" data-cat_id="general-health">Antioxidants</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'D3' %}" data-cat_id="general-health">Anti stress</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'A' %}" data-cat_id="sexual-health">Diabetic Health</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'E' %}" data-cat_id="immune-health">Bone & Joint Health</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'C' %}" data-cat_id="women-health">Cardiovascular Health</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'K' %}" data-cat_id="women-health">Brain Health</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a class="dropdown-item" href="#" data-cat_id="men-health">Health Concerns</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'MH' %}" data-cat_id="men-health">Kidney Health</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'DH' %}" data-cat_id="digestive-health">Women Health</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'GH' %}" data-cat_id="general-health">General Health</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'IH' %}" data-cat_id="immune-health">Immune Health</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'SH' %}" data-cat_id="sexual-health">Sexual Health</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'WH' %}" data-cat_id="women-health">Digestive Health</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'WH' %}" data-cat_id="women-health">Women Health</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'E' %}" data-cat_id="immune-health">Men Health</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div>Antioxidants</div>
+            
+            <div class="submenu">
+                <ul>
+                    <li>
+                        <a class="dropdown-item" href="#" data-cat_id="men-health">vitamins-minerals</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'B12' %}" data-cat_id="men-health">Vitamin B12</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'C' %}" data-cat_id="digestive-health">Vitamin C</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'D3' %}" data-cat_id="general-health">Vitamin D3</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'E' %}" data-cat_id="immune-health">Vitamin E</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'A' %}" data-cat_id="sexual-health">Vitamin A</a>
+                    </li>
+                    
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'C' %}" data-cat_id="women-health">Vitamin C</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'K' %}" data-cat_id="women-health">Vitamin K</a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+        <div class="menu-item">
+            <div>Brands</div>
+            
+            <div class="submenu">
+                <ul>
+                    <li>
+                        <a class="dropdown-item" href="#" data-cat_id="men-health">vitamins-minerals</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'B12' %}" data-cat_id="men-health">Vitamin B12</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'C' %}" data-cat_id="digestive-health">Vitamin C</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'D3' %}" data-cat_id="general-health">Vitamin D3</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'E' %}" data-cat_id="immune-health">Vitamin E</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'A' %}" data-cat_id="sexual-health">Vitamin A</a>
+                    </li>
+                    
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'C' %}" data-cat_id="women-health">Vitamin C</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'K' %}" data-cat_id="women-health">Vitamin K</a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+        <div class="menu-item">
+            <div><a href="{% url 'shop' %}" data-cat_id="men-health">Others</a></div>
+            
+            <!-- <div class="submenu">
+                <ul>
+                    <li>
+                        <a class="dropdown-item" href="#" data-cat_id="men-health">vitamins-minerals</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'B12' %}" data-cat_id="men-health">Vitamin B12</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'C' %}" data-cat_id="digestive-health">Vitamin C</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'D3' %}" data-cat_id="general-health">Vitamin D3</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'E' %}" data-cat_id="immune-health">Vitamin E</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'A' %}" data-cat_id="sexual-health">Vitamin A</a>
+                    </li>
+                    
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'C' %}" data-cat_id="women-health">Vitamin C</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'category' 'K' %}" data-cat_id="women-health">Vitamin K</a>
+                    </li>
+                </ul>
+                
+            </div> -->
+        </div>
+    </div>
+    <script>
+        // JavaScript to toggle the menu on button click
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const menu = document.querySelector('.menu');
+    
+        sidebarToggle.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+    </script>
+    </body>
+    </html>
+    
 <style>
+    .nav-link {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-link i.fas {
+        font-size: 24px; /* Adjust the size as needed */
+    }
   .nav-item {
             list-style-type: none;
             display: inline-block;
@@ -177,11 +794,13 @@
 </style>
 
       {% block banner_slider %}{% endblock banner_slider %}
-      <br><br><br><br><br>
       {% block section %}{% endblock section %}
       {% block productprocess %}{% endblock productprocess %}
       {% block information %}{% endblock information %}
       {% block main-content %}{% endblock main-content %}
+      {% block main-content1 %}  {% endblock main-content1 %}
+
+
       {% block blogcontent %}{% endblock blogcontent %}
       {% block content %}{% endblock content %}
 
@@ -202,7 +821,7 @@
           <span>Get connected with us on social networks:</span>
         </div>
   
-        <div>
+        <div style="font-weight: bold;">
           <a href="" class="text-white me-4">
             <i class="fab fa-facebook-f"></i>
           </a>
@@ -300,11 +919,11 @@
   
       <div
            class="text-center p-3"
-           style="background-color: rgba(0, 0, 0, 0.2)"
+           style="background-color: rgba(0, 0, 0, 0.2); font-weight: bold"
            >
-        © 2023 Copyright:
-        <a class="text-dark" href="https://mdbootstrap.com/"
-           >MDBootstrap.com</a
+        © 2024 Copyright:
+        <a class="text-dark" href="/"
+           >Nuturimite.com</a
           >
       </div>
     </footer>

@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm,SetPasswordForm, PasswordResetForm
 from django.contrib.auth.models import User
+from .models import Review
 
 from .models import Customer
 
@@ -44,3 +45,21 @@ class CustomerProfileForm(forms.ModelForm):
             'state':forms.Select(attrs={'class':'form-control'}),
             'zipcode':forms.NumberInput(attrs={'class':'form-control'}),
         }
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField(widget=forms.Textarea)        
+
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['rating', 'comment']    
+
+
+
+class PriceFilterForm(forms.Form):
+    min_price = forms.IntegerField(required=False, label='Min Price')
+    max_price = forms.IntegerField(required=False, label='Max Price')
