@@ -1,5 +1,10 @@
 {
-    "rewrites":[
-        { "source": "/(.*)", "destination": "/" }
+    "version": 2,
+    "builds": [
+      {
+        "src": "nuturemite/wsgi.py",
+        "use": "@vercel/python"
+      }
     ]
-}
+  }
+  
